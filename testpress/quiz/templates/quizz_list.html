@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+{% block body_block %}
+<div class="container jumbotron">
+    <h1>Welcome to a list of quiz </h1>
+    <ol>
+        {% for q in quiz %}
+        <h2><li><a href="{{q.id}}">{{q.name}}</a></li></h2>
+        {% endfor %}
+    </ol>
+</div>
+
+{% endblock %}

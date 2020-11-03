@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block body_block %}
+<div class="container jumbotron">
+    <h1>Welcome to quiz detail page </h1>
+    {% if quiz %}
+    <p>Name:{{quiz.name}}</p>
+    
+    <h3>questions lists</h3>
+    <table border=1>
+        
+        <tr>
+            <td>questions</td>
+            <td>Option1</td>
+            <td>Option2</td>
+            <td>Option3</td>
+            <td>Option4</td>
+            <td>Answer</td>
+        </tr>
+    {% for q in quiz.questions.all %} 
+   
+
+   
+     <tr>
+         <td>{{q.question}}</td>
+         <td> {{q.option1}} </td>
+         <td> {{q.option2}} </td>
+         <td> {{q.option3}} </td>
+         <td> {{q.option4}} </td>
+         <td>{{q.ans}}</td>
+     </tr>
+
+    {% endfor %}
+    
+</table>
+    {% endif %}
+
+    
+</div>
+
+
+{% endblock %}
