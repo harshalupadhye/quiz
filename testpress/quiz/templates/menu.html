@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block body_block %}
+<div class="container jumbotron">
+   <a href="{% url 'list' %}" class="btn btn-primary">QuizList</a>
+   <a href="{% url 'create' %}" class="btn btn-primary">create_Quiz</a>
+</div>
+{% endblock %}

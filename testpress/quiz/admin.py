@@ -5,3 +5,4 @@ from quiz.models import Users,quizz,quizzQuestion
 admin.site.register(Users)
 admin.site.register(quizz)
 admin.site.register(quizzQuestion)
+# admin.site.register(Answer)

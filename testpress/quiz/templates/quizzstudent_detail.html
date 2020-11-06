@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block body_block %}
+<head>
+    <script src="{% static 'js/timer.js' %}"></script>
+</head>
+<body>
+<div class="container jumbotron">
+    <h1>Welcome to quiz detail page </h1>
+    
+  
+   
+  
+   
+   <form action="{% url 'student:answer' %}"method="POST">
+       
+    {% if quiz %}
+    <p>Name:{{quiz.name}}</p>
+    
+    
+    <div id="timer">
+
+    </div>
+    <br>
+    {% for q in quiz.questions.all %} 
+    {% csrf_token %}
+    <p>{{q.question}}:</p>
+    
+   
+    
+    <input type="radio" id="{{q.option1}}"  value="option1" name={{q.ans}}>
+    <label for="option1">{{q.option1}}</label><br>
+    <input type="radio" id="{{q.option2}}"  value="option2" name={{q.ans}}>
+    <label for="option1">{{q.option2}}</label><br>
+    <input type="radio" id="{{q.option3}}" value="option3" name={{q.ans}}>
+    <label for="option1">{{q.option3}}</label><br>
+    <input type="radio" id="{{q.option4}}" value="option4" name={{q.ans}}>
+    <label for="option1">{{q.option4}}</label><br>
+   
+    
+    {% endfor %}
+    <input type="submit" class="btn btn-primary" value="submit">
+   </form>
+    
+
+  
+
+   
+    {% else %}
+    <h1>This quizz is empty</h1>
+</table>
+    {% endif %}
+
+    
+</div>
+<script>
+    var radios=document.querySelectorAll('input[type="radio"]')
+    
+
+    for(i=0; i<radios.length;i++){
+        radios[i].addEventListener("click",board)
+    }
+    function board(){
+        if (this.id==this.name){
+            alert("correct")
+        }
+        else{
+            alert("wrong, answer is: "+this.name)
+        }
+        
+    }
+ </script>
+<script>
+   var count=0;
+
+var counter=setInterval(timer, 1000); 
+var min=00
+
+function timer()
+{
+  count=count+1;
+  if(count==60){
+      min=min+1;
+      count=0;
+  }
+ 
+  document.getElementById("timer").innerHTML=min+" mins "+count + " secs";
+  
+ 
+} 
+        
+      
+  
+</script>   
+
+</body>
+
+{% endblock %}

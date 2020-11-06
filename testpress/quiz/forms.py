@@ -1,15 +1,15 @@
 from django import forms
 from django.core import validators
 from quiz.models import Users
+from django.contrib.auth.models import User
 
 class UsersForm(forms.ModelForm):
-    
+    # password=forms.CharField(widget=forms.PasswordInput())
     class Meta():
         model=Users
         fields=('role','name','password')
-    widgets={
-           'password': forms.PasswordInput(),
-    }
+   
+    
     def clean(self):
         all_clean_data=super().clean()
         password=all_clean_data['password']

@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from quiz import views
 from django.conf.urls import url
 
@@ -26,4 +26,8 @@ urlpatterns = [
     path('quizList/',views.QuizListView.as_view(),name="list"),
     path('createquestion/',views.CreateQuestionView.as_view(),name="createquestion"),
     url(r'^quizList/(?P<pk>[-\w]+)',views.QuizDetailView.as_view(),name="Detail"),
+    path('menu/',views.Menu,name="menu"),
+    path('quizstudentList/',views.QuizStudentListView.as_view(),name="studentlist"),
+    url(r'^quizstudentList/(?P<pk>[-\w]+)',views.QuizStudentDetailView.as_view(),name="Detail"),
+    url(r'',include("student.urls")),
 ]
